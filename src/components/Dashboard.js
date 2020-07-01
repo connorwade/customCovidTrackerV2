@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Container, CircularProgress, Grid } from "@material-ui/core";
 import Summary from "./Summary";
 import GraphContainer from "./GraphContainer";
+import TrendSummary from './TrendSummary';
 
 const Dashboard = ({ dataKeys, title, location }) => {
   const [apiData, setApiData] = useState([]);
@@ -50,6 +51,13 @@ const Dashboard = ({ dataKeys, title, location }) => {
           </Grid>
           <Grid item>
             <Summary
+              apiData={apiData}
+              dataKeys={dataKeys}
+              location={location}
+            />
+          </Grid>
+          <Grid item>
+            <TrendSummary
               apiData={apiData}
               dataKeys={dataKeys}
               location={location}
