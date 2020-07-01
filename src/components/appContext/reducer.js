@@ -15,6 +15,12 @@ const storageReducer = (state, action) => {
                 graphs: state.graphs.filter(graph => graph.title !== action.payload),
             };
         }
+        case 'replace_graph': {  
+            return {
+                ...state,
+                graphs: state.graphs.map(graph => graph.title === action.payload.title ? action.payload : graph ),
+            }
+        }
         case 'remove_all_graphs': {
             return {
                 ...state,

@@ -24,11 +24,22 @@ const Dashboard = ({ dataKeys, title, location }) => {
   return (
     <Container>
       {isLoading ? (
-        <Grid style={{height: '100vh'}} container justify={"center"} alignItems={"center"}>
+        <Grid
+          style={{ height: "100vh" }}
+          container
+          justify={"center"}
+          alignItems={"center"}
+        >
           <CircularProgress />
         </Grid>
       ) : (
-        <Grid style={{height: '100%', paddingTop: '16px'}} container direction={"column"} justify={'center'} spacing={2}>
+        <Grid
+          style={{ height: "100%", paddingTop: "16px" }}
+          container
+          direction={"column"}
+          justify={"center"}
+          spacing={2}
+        >
           <Grid item>
             <GraphContainer
               apiData={apiData}

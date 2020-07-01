@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import GraphStorage from "./GraphStorage";
 
 import {
@@ -16,12 +16,20 @@ import {
 import { useApp } from "./appContext";
 import { statesAbbrev } from "../util";
 
-export default function UserForm() {
+const UserForm = ({ isEdit, prevTitle, prevDataKeys, prevLocation }) => {
   //Form Prototype
   const [location, setLocation] = useState("");
   const [dataKeys, setDataKeys] = useState([]);
   const [title, setTitle] = useState("");
   const [, appDispatch] = useApp();
+
+  useEffect(() => {
+    if (isEdit) {
+      setLocation(prevLocation);
+      setDataKeys(prevDataKeys);
+      setTitle(prevTitle);
+    }
+  }, [isEdit, prevLocation, prevDataKeys, prevTitle]);
 
   const stateAbb = Object.keys(statesAbbrev);
 
@@ -60,7 +68,12 @@ export default function UserForm() {
     if (e) e.preventDefault();
     if (location && dataKeys && title) {
       let newGraph = new GraphStorage(location, dataKeys, title);
-      appDispatch({ type: "add_graph", payload: newGraph });
+      console.log("newGraph", newGraph);
+      if (isEdit) {
+        appDispatch({ type: "replace_graph", payload: newGraph });
+      } else {
+        appDispatch({ type: "add_graph", payload: newGraph });
+      }
       appDispatch({ type: "set_current_graph", payload: title });
       appDispatch({ type: "close_modal" });
       setLocation("");
@@ -70,7 +83,9 @@ export default function UserForm() {
   };
   return (
     <form onSubmit={onSubmitHandleClick} className={"form"}>
-      <DialogTitle id="form-dialog-title">Create New Data Set</DialogTitle>
+      <DialogTitle id="form-dialog-title">
+        {isEdit ? "Edit Data Set" : "Create New Data Set"}
+      </DialogTitle>
       <DialogContent>
         <FormGroup style={{ marginBottom: 20 }}>
           <TextField
@@ -132,4 +147,6 @@ export default function UserForm() {
       </DialogContent>
     </form>
   );
-}
+};
+
+export default UserForm;

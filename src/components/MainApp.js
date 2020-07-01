@@ -29,6 +29,7 @@ import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import DeleteIcon from "@material-ui/icons/Delete";
 import InfoIcon from "@material-ui/icons/Info";
 import MenuIcon from "@material-ui/icons/Menu";
+import EditIcon from "@material-ui/icons/Edit";
 
 const MainApp = () => {
   const [drawerOpen, setDrawerOpen] = useState(false);
@@ -53,7 +54,33 @@ const MainApp = () => {
 
   const addHandler = () => {
     appDispatch({ type: "open_modal" });
-    appDispatch({ type: "set_modal_content", payload: <UserForm /> });
+    appDispatch({
+      type: "set_modal_content",
+      payload: (
+        <UserForm
+          isEdit={false}
+          prevTitle={""}
+          prevDataKeys={[]}
+          prevLocation={""}
+        />
+      ),
+    });
+  };
+
+  console.log(currentSelection)
+  const editHandler = () => {
+    appDispatch({ type: "open_modal" });
+    appDispatch({
+      type: "set_modal_content",
+      payload: (
+        <UserForm
+          isEdit={true}
+          prevTitle={currentSelection.title}
+          prevDataKeys={currentSelection.dataKeys}
+          prevLocation={currentSelection.location}
+        />
+      ),
+    });
   };
 
   return (
@@ -61,11 +88,14 @@ const MainApp = () => {
       <AppModal />
       <AppBar position="static">
         <Toolbar>
-          <IconButton color='inherit' onClick={() => setDrawerOpen(true)}>
+          <IconButton color="inherit" onClick={() => setDrawerOpen(true)}>
             <MenuIcon />
           </IconButton>
           <Typography variant="h6">{currentSelection.title}</Typography>
-          <IconButton color='inherit' onClick={() => infoClickHandler()}>
+          <IconButton color="inherit" onClick={editHandler}>
+            <EditIcon />
+          </IconButton>
+          <IconButton color="inherit" onClick={() => infoClickHandler()}>
             <InfoIcon />
           </IconButton>
         </Toolbar>
@@ -90,7 +120,7 @@ const MainApp = () => {
                 <Typography variant="h6">Custom Covid Project</Typography>
               }
             />
-            <IconButton color='inherit' onClick={() => setDrawerOpen(false)}>
+            <IconButton color="inherit" onClick={() => setDrawerOpen(false)}>
               <ChevronLeftIcon />
             </IconButton>
           </ListItem>
