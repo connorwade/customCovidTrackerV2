@@ -20,8 +20,7 @@ const TrendSummary = ({ apiData, dataKeys, location }) => {
       i === 0 ? 0 : dataPoint - arr[i - 1]
     );
     let num = derivatives.reduce((sum, currentValue) => sum + currentValue);
-    let mean = num / 14;
-    console.log(key,mean);
+    let mean = num / 13;
     if(mean > 0) {
         dataSet.push({label: labels[key], value: 'Rising'})
     } else if(mean < 0) {

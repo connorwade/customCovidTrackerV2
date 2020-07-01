@@ -67,7 +67,6 @@ const MainApp = () => {
     });
   };
 
-  console.log(currentSelection)
   const editHandler = () => {
     appDispatch({ type: "open_modal" });
     appDispatch({
@@ -128,6 +127,7 @@ const MainApp = () => {
           {appState.graphs.map((obj) => (
             <ListItem
               button
+              key={obj.title + obj.location}
               onClick={(e) => {
                 appDispatch({
                   type: "set_current_graph",
