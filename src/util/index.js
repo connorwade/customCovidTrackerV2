@@ -33,7 +33,7 @@ export const colors = {
 };
 
 export const colorsOpaque = {
-  death: 'rgba(66,4,32,.5)',
+  death: "rgba(66,4,32,.5)",
   deathIncrease: "rgba(237,48,21,.5)",
   hospitalizedCumulative: "rgba(212,179,250,.5)",
   hospitalizedCurrently: "rgba(231,114,241,.5)",
@@ -49,7 +49,7 @@ export const colorsOpaque = {
   recovered: "rgba(96,234,68,.5)",
   totalTestResults: "rgba(30,100,124,.5)",
   totalTestResultsIncrease: "rgba(46,71,214,.5)",
-}
+};
 
 export const labels = {
   death: "Death",
@@ -80,15 +80,15 @@ export const sortDataByLocation = (data, stateStr) => {
 };
 export const createGraphData = (dates, arr, label, color) => {
   let data = [];
-  if(dates.length !== 0){
-  for(let i=0; i<dates.length; i++) {
-    data.push({
-      x: dates[i],
-      y: arr[i],
-    })
+  if (dates.length !== 0) {
+    for (let i = 0; i < dates.length; i++) {
+      data.push({
+        x: dates[i],
+        y: arr[i],
+      });
+    }
   }
-}
-  
+
   return {
     label: label,
     data: data,
@@ -154,23 +154,36 @@ export const statesAbbrev = {
 };
 
 export const ApiDataLabels = [
-'date',
-'death',
-'deathIncrease',
-'hospitalizedCumulative',
-'hospitalizedCurrently',
-'hospitalizedIncrease',
-'lastUpdateEt',
-'inIcuCumulative',
-'inIcuCurrently',
-'negative',
-'onVentilatorCumulative',
-'onVentilatorCurrently',
-'pending',
-'positive',
-'positiveIncrease',
-'recovered',
-'state',
-'totalTestResults',
-'totalTestResultsIncrease',
+  "date",
+  "death",
+  "deathIncrease",
+  "hospitalizedCumulative",
+  "hospitalizedCurrently",
+  "hospitalizedIncrease",
+  "lastUpdateEt",
+  "inIcuCumulative",
+  "inIcuCurrently",
+  "negative",
+  "onVentilatorCumulative",
+  "onVentilatorCurrently",
+  "pending",
+  "positive",
+  "positiveIncrease",
+  "recovered",
+  "state",
+  "totalTestResults",
+  "totalTestResultsIncrease",
 ];
+
+export const sevenDayAverage = (arr, index, dataKey) => {
+  if (!arr[index][dataKey]) {
+    return null;
+  } else if (index < 7) {
+    return arr[index][dataKey];
+  } else {
+    let numArr = arr.slice(index - 6, index + 1);
+    numArr = numArr.map((dateSet) => dateSet[dataKey])
+    let num = numArr.reduce((sum, currentValue) => sum + currentValue);
+    return num / 7;
+  }
+};

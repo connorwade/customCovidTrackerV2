@@ -14,7 +14,8 @@ export default class Graph extends Component {
     if (
       prevProps.title !== this.props.title ||
       prevProps.logAxes !== this.props.logAxes ||
-      prevProps.labels.length !== this.props.labels.length
+      prevProps.labels.length !== this.props.labels.length ||
+      prevProps.smoothData !== this.props.smoothData
     ) {
 
       this.buildChart();
