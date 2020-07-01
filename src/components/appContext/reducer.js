@@ -18,7 +18,7 @@ const storageReducer = (state, action) => {
         case 'replace_graph': {  
             return {
                 ...state,
-                graphs: state.graphs.map(graph => graph.title === action.payload.title ? action.payload : graph ),
+                graphs: state.graphs.map(graph => graph.title === action.payload.prevTitle ? action.payload.newGraph : graph ),
             }
         }
         case 'remove_all_graphs': {

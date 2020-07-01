@@ -70,7 +70,10 @@ const UserForm = ({ isEdit, prevTitle, prevDataKeys, prevLocation }) => {
       let newGraph = new GraphStorage(location, dataKeys, title);
       console.log("newGraph", newGraph);
       if (isEdit) {
-        appDispatch({ type: "replace_graph", payload: newGraph });
+        appDispatch({
+          type: "replace_graph",
+          payload: { prevTitle: prevTitle, newGraph: newGraph },
+        });
       } else {
         appDispatch({ type: "add_graph", payload: newGraph });
       }
