@@ -19,6 +19,7 @@ import {
   Drawer,
   Dialog,
   DialogTitle,
+  DialogContent,
   DialogContentText,
   DialogActions,
   Button,
@@ -161,29 +162,31 @@ const MainApp = () => {
         style={{ zIndex: "10000" }}
       >
         <DialogTitle>Confirm Deletion?</DialogTitle>
-        <DialogContentText>
-          You wil not be able to retrieve this data set once it has been
-          deleted.
-        </DialogContentText>
-        <DialogActions>
-          <Button
-            color="primary"
-            onClick={() => {
-              setUserNoticeOpen(false);
-              deleteDataSet();
-            }}
-          >
-            Delete Anyway
-          </Button>
-          <Button
-            onClick={() => {
-              setUserNoticeOpen(false);
-              setDeleteSelection("");
-            }}
-          >
-            Nevermind
-          </Button>
-        </DialogActions>
+        <DialogContent>
+          <DialogContentText>
+            You wil not be able to retrieve this data set once it has been
+            deleted.
+          </DialogContentText>
+          <DialogActions>
+            <Button
+              color="primary"
+              onClick={() => {
+                setUserNoticeOpen(false);
+                deleteDataSet();
+              }}
+            >
+              Delete Anyway
+            </Button>
+            <Button
+              onClick={() => {
+                setUserNoticeOpen(false);
+                setDeleteSelection("");
+              }}
+            >
+              Nevermind
+            </Button>
+          </DialogActions>
+        </DialogContent>
       </Dialog>
     </div>
   );
