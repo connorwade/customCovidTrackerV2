@@ -21,7 +21,7 @@ class AppProvider extends Component {
   }
 
   componentDidMount() {
-    const appState = window.localStorage.getItem("stored_app_state");
+    const appState = window.localStorage.getItem("stored_app_state2");
     this.setState({
       localState: appState
         ? { ...JSON.parse(appState), ...resetState }
@@ -46,7 +46,7 @@ const AppProviderStore = ({ children, localState }) => {
   const [state, dispatch] = useReducer(appReducer, localState);
 
   useEffect(() => {
-    window.localStorage.setItem("stored_app_state", JSON.stringify(state));
+    window.localStorage.setItem("stored_app_state2", JSON.stringify(state));
   }, [state]);
 
   return (

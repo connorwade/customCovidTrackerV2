@@ -13,20 +13,34 @@ const TrendSummary = ({ apiData, dataKeys, location }) => {
   const sortedLocationData = sortDataByLocation(apiData, location);
   let dataSet = [];
   let len = sortedLocationData.length - 1;
-  let lastWeekofData = sortedLocationData.slice(len - 14, len);
+  let lastWeekofData = sortedLocationData.slice(len - 15, len);
   dataKeys.forEach((key) => {
     let lastWeekofKeyData = lastWeekofData.map((dataPoint) => dataPoint[key]);
     let derivatives = lastWeekofKeyData.map((dataPoint, i, arr) =>
       i === 0 ? 0 : dataPoint - arr[i - 1]
     );
-    let num = derivatives.reduce((sum, currentValue) => sum + currentValue);
-    let mean = num / 13;
-    if(mean > 0) {
-        dataSet.push({label: labels[key], value: 'Rising'})
-    } else if(mean < 0) {
-        dataSet.push({label: labels[key], value: 'Falling'})
+    let positiveMag = derivatives
+      .filter((x) => x >= 0)
+      .reduce((sum, currentValue) => sum + currentValue);
+    let negativeMag = derivatives
+      .filter((x) => x <= 0)
+      .reduce((sum, currentValue) => sum + currentValue);
+    console.log(positiveMag, negativeMag);
+    let positivesCount = derivatives.filter((x) => x > 0).length;
+    let negativesCount = derivatives.filter((x) => x < 0).length;
+    console.log(positivesCount, negativesCount);
+    if (positivesCount > 7) {
+      dataSet.push({ label: labels[key], value: "Rising" });
+    } else if (negativesCount < 7) {
+      dataSet.push({ label: labels[key], value: "Falling" });
     } else {
-        dataSet.push({label: labels[key], value: 'Stable'})
+      if (positiveMag / negativeMag <= -.95) {
+        dataSet.push({ label: labels[key], value: "Rising" });
+      } else if (positiveMag / negativeMag >= -1.05) {
+        dataSet.push({ label: labels[key], value: "Falling" });
+      } else {
+        dataSet.push({ label: labels[key], value: "Stable" });
+      }
     }
   });
 
@@ -36,8 +50,14 @@ const TrendSummary = ({ apiData, dataKeys, location }) => {
         <List>
           <ListItem>
             <ListItemText
-              primary={<Typography variant="h5">14 Day Trend Summary</Typography>}
-              secondary={<Typography variant="subtitle1">Calculated from the derivative average</Typography>}
+              primary={
+                <Typography variant="h5">14 Day Trend Summary</Typography>
+              }
+              secondary={
+                <Typography variant="subtitle1">
+                  Calculated from the average change
+                </Typography>
+              }
             />
           </ListItem>
           <Divider variant="inset" component="li" />

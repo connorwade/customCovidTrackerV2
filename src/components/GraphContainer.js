@@ -123,7 +123,7 @@ const GraphContainer = ({ apiData, dataKeys, location, title }) => {
               />
             }
             label="7 Day Averages"
-            labelPlacement="top"
+            labelPlacement="bottom"
           />
         </FormControl>
       </Container>

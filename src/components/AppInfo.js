@@ -6,6 +6,7 @@ const AppInfo = () => {
   return (
     <div className="appInfo">
       <Typography variant='h4'>About this app</Typography>
+      <br></br>
       <Typography variant='body2'>
         The Custom Covid Project was started to cut through the inherit noise in
         many online tracking websites and provide a straight-forward,
@@ -19,7 +20,6 @@ const AppInfo = () => {
         We hope this app can help you make responsible, safe, and thoughtful
         decisions and discussions during this time.
       </Typography>
-      <br></br>
       <br></br>
       <Typography variant='h4'>Credits</Typography>
       <Typography variant='caption'>
@@ -40,7 +40,8 @@ const AppInfo = () => {
           Austen Wade
         </a>
       </Typography>
-      <Typography variant='caption' className="citation">
+      <br></br>
+      <Typography variant='caption'>
         Data source:&nbsp;
         <a
           href="https://covidtracking.com/about-data"

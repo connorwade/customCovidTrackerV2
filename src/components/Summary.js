@@ -7,7 +7,7 @@ import {
   Typography,
   Divider,
 } from "@material-ui/core";
-import { sortDataByLocation, formatDate, labels } from "../util/index";
+import { sortDataByLocation, formatDate, labels } from "../util";
 
 const Summary = ({ apiData, dataKeys, location }) => {
   const sortedLocationData = sortDataByLocation(apiData, location);
