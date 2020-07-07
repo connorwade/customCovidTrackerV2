@@ -19,9 +19,10 @@ const Summary = ({ apiData, dataKeys, location }) => {
   dataKeys.forEach((key) => {
     dataSet.push({
       label: labels[key],
-      value: sortedLocationData[len][key]
-        ? sortedLocationData[len][key]
-        : "Not Reported",
+      value:
+        sortedLocationData[len][key] !== null
+          ? sortedLocationData[len][key]
+          : "Not Reported",
     });
   });
 

@@ -38,6 +38,8 @@ const UserForm = ({ isEdit, prevTitle, prevDataKeys, prevLocation }) => {
   };
 
   const dataMap = {
+    activeCases: "Active Cases",
+    CFR: "Confirmed Fatality Rate",
     death: "Death",
     deathIncrease: "Death Increase",
     hospitalizedCumulative: "Hospitalized Cumulative",
@@ -51,6 +53,7 @@ const UserForm = ({ isEdit, prevTitle, prevDataKeys, prevLocation }) => {
     pending: "Current Unreturned Tests",
     positive: "Positive Cases",
     positiveIncrease: "Positive Case Increase",
+    positiveIncreaseRatio: "Positive Increase Ratio",
     recovered: "Recovered Cases",
     totalTestResults: "Total Tests",
     totalTestResultsIncrease: "Total Tests Increase",

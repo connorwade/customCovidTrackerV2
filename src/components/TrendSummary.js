@@ -25,10 +25,8 @@ const TrendSummary = ({ apiData, dataKeys, location }) => {
     let negativeMag = derivatives
       .filter((x) => x <= 0)
       .reduce((sum, currentValue) => sum + currentValue);
-    console.log(positiveMag, negativeMag);
     let positivesCount = derivatives.filter((x) => x > 0).length;
     let negativesCount = derivatives.filter((x) => x < 0).length;
-    console.log(positivesCount, negativesCount);
     if (positivesCount > 7) {
       dataSet.push({ label: labels[key], value: "Rising" });
     } else if (negativesCount < 7) {

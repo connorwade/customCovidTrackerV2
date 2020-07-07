@@ -14,6 +14,8 @@ const months = [
 ];
 
 export const colors = {
+  activeCases: "#420420",
+  CFR: "#420420",
   death: "#420420",
   deathIncrease: "#ed3015",
   hospitalizedCumulative: "#d4b3fa",
@@ -27,12 +29,15 @@ export const colors = {
   pending: "#000000",
   positive: "#12a9c6",
   positiveIncrease: "#3ccac8",
+  positiveIncreaseRatio : "#3ccac8",
   recovered: "#60ea44",
   totalTestResults: "#1e647c",
   totalTestResultsIncrease: "#2e47d6",
 };
 
 export const colorsOpaque = {
+  activeCases: "rgba(66,4,32,.5)",
+  CFR: "rgba(66,4,32,.5)",
   death: "rgba(66,4,32,.5)",
   deathIncrease: "rgba(237,48,21,.5)",
   hospitalizedCumulative: "rgba(212,179,250,.5)",
@@ -46,12 +51,15 @@ export const colorsOpaque = {
   pending: "rgba(66,4,32,.5)",
   positive: "rgba(18,169,198,.5)",
   positiveIncrease: "rgba(60,202,200,.5)",
+  positiveIncreaseRatio: "rgba(60,202,200,.5)",
   recovered: "rgba(96,234,68,.5)",
   totalTestResults: "rgba(30,100,124,.5)",
   totalTestResultsIncrease: "rgba(46,71,214,.5)",
 };
 
 export const labels = {
+  activeCases: "Active Cases",
+  CFR: "CFR",
   death: "Death",
   deathIncrease: "Death Increase",
   hospitalizedCumulative: "Hospitalized Cumulative",
@@ -65,6 +73,7 @@ export const labels = {
   pending: "Current Unreturned Tests",
   positive: "Positive Cases",
   positiveIncrease: "Positive Case Increase",
+  positiveIncreaseRatio: "Positive Case Increase Ratio",
   recovered: "Recovered Cases",
   totalTestResults: "Total Tests",
   totalTestResultsIncrease: "Total Tests Increase",
@@ -154,6 +163,8 @@ export const statesAbbrev = {
 };
 
 export const ApiDataLabels = [
+  "activeCases",
+  "CFR",
   "date",
   "death",
   "deathIncrease",
@@ -169,6 +180,7 @@ export const ApiDataLabels = [
   "pending",
   "positive",
   "positiveIncrease",
+  "positiveIncreaseRatio",
   "recovered",
   "state",
   "totalTestResults",

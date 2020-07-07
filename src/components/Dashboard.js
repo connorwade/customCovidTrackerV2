@@ -17,8 +17,20 @@ const Dashboard = ({ dataKeys, title, location }) => {
   const getData = async () => {
     const response = await fetch(URL);
     const data = await response.json();
-    data.reverse();
-    setApiData(data);
+    let newData =[]; 
+    data.forEach(
+      (d) => {
+        newData.push(
+          {...d,
+            positiveIncreaseRatio: d.positiveIncrease/d.totalTestResultsIncrease * 100,
+            CFR: d.death/d.positive * 100,
+            activeCases: d.positive - d.death - d.recovered,
+          }
+        ) 
+      }
+    )
+    newData.reverse();
+    setApiData(newData);
     setIsLoading(false);
   };
 
