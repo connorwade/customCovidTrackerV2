@@ -12,10 +12,10 @@ const Dashboard = ({ dataKeys, title, location }) => {
     getData();
   }, []);
 
-  const URL = "https://covidtracking.com/api/v1/states/daily.json";
+  const URL = "https://covidtracking.com/api/v1/states/daily.json", proxyURL = 'https://cors-anywhere.herokuapp.com/';
 
   const getData = async () => {
-    const response = await fetch(URL);
+    const response = await fetch(proxyURL + URL);
     const data = await response.json();
     let newData =[]; 
     data.forEach(
